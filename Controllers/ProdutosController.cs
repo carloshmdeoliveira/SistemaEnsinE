@@ -16,14 +16,21 @@ namespace SistemaEnsinE.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Produtos.ToListAsync());
+            var produtosComClientes = await _context.Produtos
+                .Include(p => p.Clientes)
+                .ToListAsync();
+
+            return View(produtosComClientes);
         }
 
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
 
-            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == id);
+            var produto = await _context.Produtos
+                .Include(p => p.Clientes)
+                .FirstOrDefaultAsync(p => p.ProdutoId == id);
+
             if (produto == null) return NotFound();
 
             return View(produto);
@@ -81,7 +88,10 @@ namespace SistemaEnsinE.Controllers
         {
             if (id == null) return NotFound();
 
-            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == id);
+            var produto = await _context.Produtos
+                .Include(p => p.Clientes)
+                .FirstOrDefaultAsync(p => p.ProdutoId == id);
+
             if (produto == null) return NotFound();
 
             return View(produto);

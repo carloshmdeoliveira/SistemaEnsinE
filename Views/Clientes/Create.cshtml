@@ -36,7 +36,9 @@
 
             <div class="form-group">
                 <label asp-for="Vendedor" class="control-label"></label>
-                <input asp-for="Vendedor" class="form-control" />
+                <select asp-for="Vendedor" class="form-control" asp-items="ViewBag.Vendedores">
+                    <option value="">Selecione um vendedor</option>
+                </select>
                 <span asp-validation-for="Vendedor" class="text-danger"></span>
             </div>
 

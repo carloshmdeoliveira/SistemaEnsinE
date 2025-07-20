@@ -1,42 +1,36 @@
 ﻿@model SistemaEnsinE.Models.Produto
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Produto";
 }
 
-<h1>Details</h1>
+<h1 class="mb-3">Detalhes do Produto</h1>
+<hr />
 
-<div>
-    <h4>Produto</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Preco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Situacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Situacao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comissao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comissao)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ProdutoId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<dl class="row">
+    <dt class="col-sm-3">Nome</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Nome)</dd>
+
+    <dt class="col-sm-3">Preço</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Preco)</dd>
+
+    <dt class="col-sm-3">Situação</dt>
+    <dd class="col-sm-9">
+        @if (Model.Situacao)
+        {
+            <span class="badge bg-success">Disponível</span>
+        }
+        else
+        {
+            <span class="badge bg-secondary">Indisponível</span>
+        }
+    </dd>
+
+    <dt class="col-sm-3">Comissão (%)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Comissao)</dd>
+</dl>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.ProdutoId" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar à Lista</a>
 </div>

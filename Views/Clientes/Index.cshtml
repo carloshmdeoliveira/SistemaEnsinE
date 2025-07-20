@@ -1,65 +1,56 @@
 ﻿@model IEnumerable<SistemaEnsinE.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clientes";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Clientes</h2>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle me-1"></i> Cadastrar Novo Cliente
+    </a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeCompleto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Desconto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vendedor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Produto)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.NomeCompleto)</th>
+            <th>@Html.DisplayNameFor(model => model.Telefone)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>@Html.DisplayNameFor(model => model.Desconto)</th>
+            <th>@Html.DisplayNameFor(model => model.Vendedor)</th>
+            <th>Produto</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeCompleto)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NomeCompleto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Telefone)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Desconto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Vendedor)</td>
+                <td>
+                    @(item.Produto != null
+                                    ? Html.DisplayFor(modelItem => item.Produto.Nome)
+                                    : "")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Desconto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vendedor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Produto.Nome)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
+                <div class="btn-group" role="group">
+                    <a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn btn-sm btn-primary">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.ClienteId" class="btn btn-sm btn-info text-white">
+                        <i class="bi bi-eye"></i> Detalhes
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.ClienteId" class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i> Excluir
+                    </a>
+                </div>
             </td>
         </tr>
-}
+                }
     </tbody>
 </table>

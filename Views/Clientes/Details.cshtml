@@ -1,54 +1,36 @@
 ﻿@model SistemaEnsinE.Models.Cliente
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Cliente";
 }
 
-<h1>Details</h1>
+<h2 class="fw-bold mb-4">Detalhes do Cliente</h2>
 
-<div>
-    <h4>Cliente</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeCompleto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeCompleto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Desconto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Desconto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vendedor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vendedor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Produto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Produto.Nome)
-        </dd>
-    </dl>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3 fw-bold">Nome Completo</dt>
+            <dd class="col-sm-9">@Model.NomeCompleto</dd>
+
+            <dt class="col-sm-3 fw-bold">Telefone</dt>
+            <dd class="col-sm-9">@Model.Telefone</dd>
+
+            <dt class="col-sm-3 fw-bold">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3 fw-bold">Desconto (%)</dt>
+            <dd class="col-sm-9">@Model.Desconto</dd>
+
+            <dt class="col-sm-3 fw-bold">Vendedor</dt>
+            <dd class="col-sm-9">@Model.Vendedor</dd>
+
+            <dt class="col-sm-3 fw-bold">Produto</dt>
+            <dd class="col-sm-9">@Model.Produto?.Nome</dd>
+        </dl>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ClienteId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-4 d-flex gap-2">
+    <a asp-action="Edit" asp-route-id="@Model?.ClienteId" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar à Lista</a>
 </div>

@@ -126,10 +126,9 @@ namespace SistemaEnsinE.Controllers
             return _context.Clientes.Any(c => c.ClienteId == id);
         }
 
-        // ✅ Novo método auxiliar para o dropdown de vendedores
         private void PopularVendedoresDropdown(string? vendedorSelecionado = null)
         {
-            var vendedores = new List<string> { "João", "Maria", "Carlos" };
+            var vendedores = new List<string> { "João", "Maria", "Marcos" };
             ViewBag.Vendedores = new SelectList(vendedores, vendedorSelecionado);
         }
     }

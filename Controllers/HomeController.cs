@@ -15,7 +15,7 @@ namespace SistemaEnsinE.Controllers
 
         public IActionResult Index() => View();
 
-        public IActionResult Privacy() => View();
+        public IActionResult Sobre() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

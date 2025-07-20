@@ -1,53 +1,65 @@
 ﻿@model IEnumerable<SistemaEnsinE.Models.Produto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produtos";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Produtos</h2>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle me-1"></i> Cadastrar Novo Produto
+    </a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Situacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comissao)
-            </th>
-            <th></th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Situação</th>
+            <th>Comissão</th>
+            <th>Clientes</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Situacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comissao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProdutoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            var rowClass = item.Situacao ? "table-success" : "";
+            <tr class="@rowClass">
+                <td>@item.Nome</td>
+                <td>R$ @item.Preco.ToString("F2")</td>
+                <td>@(item.Situacao ? "Disponível" : "Indisponível")</td>
+                <td>@item.Comissao.ToString("F2")%</td>
+                <td>
+                    @if (item.Clientes != null && item.Clientes.Any())
+                    {
+                        <ul class="mb-0 ps-3">
+                            @foreach (var cliente in item.Clientes)
+                            {
+                                <li>@cliente.NomeCompleto</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <em>Nenhum cliente</em>
+                    }
+                </td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-sm btn-primary">
+                            <i class="bi bi-pencil"></i> Editar
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-sm btn-info text-white">
+                            <i class="bi bi-eye"></i> Detalhes
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i> Excluir
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
