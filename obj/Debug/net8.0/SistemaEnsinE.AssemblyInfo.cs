@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaEnsinE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42348990034b292837a72d2854d08f9093de1960")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaEnsinE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaEnsinE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
