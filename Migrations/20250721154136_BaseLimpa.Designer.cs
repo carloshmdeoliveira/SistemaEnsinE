@@ -11,8 +11,8 @@ using SistemaEnsinE.Data;
 namespace SistemaEnsinE.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250719145239_AjustesClienteFinal")]
-    partial class AjustesClienteFinal
+    [Migration("20250721154136_BaseLimpa")]
+    partial class BaseLimpa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,8 @@ namespace SistemaEnsinE.Migrations
                         .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NomeCompleto")
                         .IsRequired()
@@ -47,10 +48,10 @@ namespace SistemaEnsinE.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Telefone")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Vendedor")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
